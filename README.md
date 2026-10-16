@@ -9,9 +9,9 @@ Página estática (sem build). Arquivos:
 
 1. hPanel > Git (ou Gerenciador de Arquivos) do site maxxeletricasolar.com.br.
 2. Pasta de destino: `public_html/playboyfest`.
-3. Conferir: https://maxxeletricasolar.com.br/playboyfest/
+3. Conferir: https://maxxeletricasolar.github.io/playboyfest/
 
-Se usar outro endereço, troque `maxxeletricasolar.com.br/playboyfest` nas linhas `og:url` e `og:image` do `index.html`.
+Se usar outro endereço, troque `maxxeletricasolar.github.io/playboyfest` nas linhas `og:url` e `og:image` do `index.html`.
 
 ## Depois da festa
 
