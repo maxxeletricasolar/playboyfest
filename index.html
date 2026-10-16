@@ -55,21 +55,23 @@ h1 .b{display:block;font-size:clamp(46px,15vw,76px);font-weight:400;font-style:i
 .tag{font-family:var(--f-display);font-style:italic;font-size:21px;color:var(--gold)}
 .amp{font-family:var(--f-script);font-size:54px;line-height:1.1;color:var(--gold-d);margin:6px 0 2px}
 .rule{width:180px;height:1px;margin:34px 0 28px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent)}
-.when{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 18px;font-family:var(--f-label);font-weight:500;font-size:clamp(24px,7.4vw,32px);letter-spacing:.1em;color:var(--gold);line-height:1}
-.when span{width:1px;height:26px;background:var(--gold-d)}
-.venue{margin:24px 0 0;font-family:var(--f-display);font-size:23px;line-height:1.25}
-.addr{margin:8px 0 0;font-style:normal;font-size:15px;line-height:1.6;color:var(--fg-dim);letter-spacing:.03em}
+.when{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:10px clamp(8px,3vw,18px);white-space:nowrap;font-family:var(--f-label);font-weight:500;font-size:clamp(19px,6.2vw,32px);letter-spacing:.1em;color:var(--gold);line-height:1}
+.when span{flex:none;width:1px;height:22px;background:var(--gold-d)}
+.venue{margin:24px 0 0;font-family:var(--f-display);font-size:23px;line-height:1.25;text-wrap:balance}
+.addr{margin:8px 0 0;font-style:normal;font-size:15px;line-height:1.6;color:var(--fg);opacity:.85;letter-spacing:.03em;text-wrap:balance}
+.addr .nb{white-space:nowrap}
 .actions{margin-top:28px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px}
-.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 20px;font:700 14px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1.5px solid var(--gold);transition:background .2s,color .2s}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 16px;font:700 14px/1 var(--f-body);letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1.5px solid var(--gold);transition:background .2s,color .2s}
 .btn svg{width:20px;height:20px;flex:none}
-.btn-main{background:var(--gold);color:var(--on-gold)}
+.btn-main{background:var(--gold);color:var(--on-gold);box-shadow:0 6px 18px rgba(226,194,122,.25)}
 .btn-main:hover{background:var(--fg)}
-.btn-alt{background:transparent;color:var(--gold)}
-.btn-alt:hover{background:rgba(226,194,122,.12)}
+.btn-alt{background:rgba(226,194,122,.14);color:var(--fg);border-width:2px}
+.btn-alt:hover{background:rgba(226,194,122,.26)}
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .feat{margin-top:34px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-size:12px;font-weight:700;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
 .feat span+span:before{content:"";display:inline-block;width:6px;height:6px;margin-right:14px;background:var(--gold-d);transform:rotate(45deg);vertical-align:middle}
 .note{margin:2px 0 0;font-size:13px;color:var(--fg-dim);min-height:1.5em}
+@media (max-width:420px){.feat{flex-direction:column;align-items:center;gap:10px}.feat span+span:before{display:none}.card-in{padding:36px 16px 32px}}
 ::selection{background:var(--gold);color:var(--on-gold)}
 </style>
 
@@ -87,7 +89,7 @@ h1 .b{display:block;font-size:clamp(46px,15vw,76px);font-weight:400;font-style:i
   <div class="rule" aria-hidden="true"></div>
   <div class="when"><div>DOMINGO</div><span aria-hidden="true"></span><div>18.10.26</div><span aria-hidden="true"></span><div>12H</div></div>
   <p class="venue">Casa de Festa Jardins Poty</p>
-  <address class="addr" id="addr">Rua Joca Broxado, 919 · Três Andares<br>Teresina — PI</address>
+  <address class="addr" id="addr">Rua Joca Broxado, 919 · <span class="nb">Três Andares</span><br>Teresina — PI</address>
   <div class="actions">
     <a class="btn btn-main" id="maps" href="https://maps.app.goo.gl/cmcyMmwve5pURXgE8" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
