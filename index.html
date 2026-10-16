@@ -66,12 +66,9 @@ h1 .b{display:block;font-size:clamp(40px,12.5vw,76px);font-weight:400;font-style
 .btn svg{width:20px;height:20px;flex:none}
 .btn-main{background:var(--gold);color:var(--on-gold);box-shadow:0 6px 18px rgba(226,194,122,.25)}
 .btn-main:hover{background:var(--fg)}
-.btn-alt{background:rgba(226,194,122,.14);color:var(--fg);border-width:2px}
-.btn-alt:hover{background:rgba(226,194,122,.26)}
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .feat{margin-top:clamp(18px,5vw,34px);display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-size:12px;font-weight:700;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
 .feat span+span:before{content:"";display:inline-block;width:6px;height:6px;margin-right:14px;background:var(--gold-d);transform:rotate(45deg);vertical-align:middle}
-.note{margin:2px 0 0;font-size:13px;color:var(--fg-dim);min-height:1.5em}
 @media (max-width:420px){.feat{flex-direction:column;align-items:center;gap:6px;font-size:11px}.feat span+span:before{display:none}}
 ::selection{background:var(--gold);color:var(--on-gold)}
 </style>
@@ -96,30 +93,9 @@ h1 .b{display:block;font-size:clamp(40px,12.5vw,76px);font-weight:400;font-style
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
       Como chegar
     </a>
-    <button class="btn btn-alt" id="copy" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
-      Copiar endereço
-    </button>
-    <p class="note" id="note" role="status"></p>
   </div>
   <div class="feat"><span>Bandas ao vivo</span><span>Piscina liberada</span></div>
 </div></main>
 
-<script>
-(function(){
-  var btn=document.getElementById('copy'),note=document.getElementById('note');
-  var text='Rua Joca Broxado, 919, Três Andares, Teresina - PI';
-  function done(ok){note.textContent=ok?'Endereço copiado.':'Toque e segure no endereço para copiar.';setTimeout(function(){note.textContent=''},3000)}
-  btn.addEventListener('click',function(){
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){done(true)},function(){sel()});
-    }else{sel()}
-  });
-  function sel(){
-    try{var r=document.createRange();r.selectNodeContents(document.getElementById('addr'));var s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}
-    done(false);
-  }
-})();
-</script>
 </body>
 </html>
