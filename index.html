@@ -70,6 +70,21 @@ h1 .b{display:block;font-size:clamp(40px,12.5vw,76px);font-weight:400;font-style
 .btn:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .feat{margin-top:clamp(18px,5vw,34px);display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-size:12px;font-weight:700;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
 .feat span+span:before{content:"";display:inline-block;width:6px;height:6px;margin-right:14px;background:var(--gold-d);transform:rotate(45deg);vertical-align:middle}
+/* Effects: staggered entrance, gold shimmer on the title, button sheen, floating sparkles. All off when the visitor prefers reduced motion. */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes shimmer{0%{background-position:150% 0}100%{background-position:-50% 0}}
+@keyframes sheen{0%,60%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes glow{0%,100%{box-shadow:0 6px 18px rgba(226,194,122,.25)}50%{box-shadow:0 6px 26px rgba(226,194,122,.5)}}
+@keyframes drift{0%{transform:translate3d(0,0,0) scale(.6);opacity:0}15%{opacity:var(--o)}85%{opacity:var(--o)}100%{transform:translate3d(var(--dx),-105vh,0) scale(1);opacity:0}}
+.card{position:relative;z-index:1}
+.card-in>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.card-in>*:nth-child(1){animation-delay:.05s}.card-in>*:nth-child(2){animation-delay:.2s}.card-in>*:nth-child(3){animation-delay:.35s}.card-in>*:nth-child(4){animation-delay:.55s}.card-in>*:nth-child(5){animation-delay:.7s}.card-in>*:nth-child(6){animation-delay:.85s}.card-in>*:nth-child(7){animation-delay:1s}.card-in>*:nth-child(8){animation-delay:1.15s}.card-in>*:nth-child(9){animation-delay:1.25s}.card-in>*:nth-child(10){animation-delay:1.4s}.card-in>*:nth-child(11){animation-delay:1.55s}
+h1 .a{background:linear-gradient(100deg,var(--gold) 38%,#fff3cf 50%,var(--gold) 62%) 150% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out 1.6s infinite}
+.btn-main{position:relative;overflow:hidden;animation:rise .9s cubic-bezier(.2,.7,.2,1) 1.4s both,glow 3s ease-in-out 2.4s infinite}
+.btn-main:after{content:"";position:absolute;top:0;bottom:0;left:0;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:sheen 4.5s ease-in-out 2.4s infinite}
+.sparks{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.sparks i{position:absolute;bottom:-10px;width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#fff3cf 0%,var(--gold) 45%,transparent 70%);opacity:0;animation:drift var(--d) linear var(--l) infinite}
+@media (prefers-reduced-motion:reduce){.card-in>*,.btn-main,.btn-main:after,h1 .a{animation:none!important}.sparks{display:none}h1 .a{background:none;-webkit-text-fill-color:currentColor}}
 @media (max-width:420px){.feat{flex-direction:column;align-items:center;gap:6px;font-size:11px}.feat span+span:before{display:none}}
 ::selection{background:var(--gold);color:var(--on-gold)}
 </style>
@@ -99,5 +114,17 @@ h1 .b{display:block;font-size:clamp(40px,12.5vw,76px);font-weight:400;font-style
   <div class="feat"><span>Bandas ao vivo</span><span>Piscina liberada</span></div>
 </div></main>
 
+<div class="sparks" id="sparks" aria-hidden="true"></div>
+<script>
+(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var box=document.getElementById('sparks'),n=18;
+  for(var i=0;i<n;i++){
+    var e=document.createElement('i'),s=Math.random()*5+3;
+    e.style.cssText='left:'+(Math.random()*100)+'%;--s:'+s+'px;--d:'+(9+Math.random()*10)+'s;--l:-'+(Math.random()*14)+'s;--dx:'+((Math.random()*80-40))+'px;--o:'+(Math.random()*.5+.35);
+    box.appendChild(e);
+  }
+})();
+</script>
 </body>
 </html>
